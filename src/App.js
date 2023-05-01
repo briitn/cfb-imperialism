@@ -4,7 +4,6 @@ import WeekOne from './week1/WeekOne';
 function App() {
   return (
     <div className="App">
- 
     <WeekOne/>
     </div>
   );
