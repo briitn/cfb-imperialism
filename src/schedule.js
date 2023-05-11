@@ -1,41 +1,356 @@
 
 const Schedule = {
-    week1:[
-        { home: 'Ohio-State', away: 'Rutgers', home_rating: 9.5, away_rating: 2.5, home_state: 'Ohio',away_state:"New Jersey" },
-        { home: 'Michigan', away: 'Indiana', home_rating: 9.7, away_rating: 7.2, home_state: 'Michigan',away_state:"Indiana"},
-        { home: 'Nebraska', away: 'Penn-State', home_rating: 4.5, away_rating: 8.0, home_state: 'Nebraska',away_state:"Pennsylvania",},
-        { home: 'Minnesota', away: 'Illinois', home_rating: 7.0, away_rating: 6.3, home_state: 'Minnesota', away_state:"Illinois"},
-        { home: 'Maryland', away: 'Iowa', home_rating: 5.2, away_rating: 6.8, home_state: 'Maryland', away_state:"Iowa" },
+    week1: [
+        {
+          home: {
+            team_name: 'Ohio-State',
+            rating: 9.5,
+            state: 'Ohio',
+            ranking: 2
+          },
+          away: {
+            team_name: 'Rutgers',
+            rating: 2.5,
+            state: 'New Jersey',
+            ranking:10
+          }
+        },
+        {
+          home: {
+            team_name: 'Michigan',
+            rating: 9.7,
+            state: 'Michigan',
+            ranking: 1
+          },
+          away: {
+            team_name: 'Indiana',
+            rating: 7.2,
+            state: 'Indiana',
+            ranking: 7
+          }
+        },
+
+        {
+            home: {
+              team_name: 'Nebraska',
+              rating: 4.5,
+              state: 'Nebraska',
+              ranking: 8
+            },
+            away: {
+              team_name: 'Penn-State',
+              rating: 8.0,
+              state: 'Pennsylvania',
+              ranking: 3
+            }
+          },
+          {
+            home: {
+              team_name: 'Minnesota',
+              rating: 7.0,
+              state: 'Minnesota',
+              ranking: 5
+            },
+            away: {
+              team_name: 'Illinois',
+              rating: 6.3,
+              state: 'Illinois',
+              ranking: 9
+            }
+          },
+          {
+            home: {
+              team_name: 'Maryland',
+              rating: 5.2,
+              state: 'Maryland',
+              ranking: 4
+            },
+            away: {
+              team_name: 'Iowa',
+              rating: 6.8,
+              state: 'Iowa',
+              ranking: 6
+            }
+          }
         ],
         
-        week2:[
-        { home: 'Minnesota', away: 'Maryland', home_rating: 7.0, away_rating: 6.5, home_state: 'Minnesota' , away_state:"Maryland"},
-        { home: 'Nebraska', away: 'Michigan', home_rating: 4.5, away_rating: 9.7, home_state: 'Nebraska', away_state:"Michigan" },
-        { home: 'Penn-State', away: 'Rutgers', home_rating: 8.0, away_rating: 2.5, home_state: 'Pennsylvania', away_state:"New Jersey" },
-        { home: 'Iowa', away: 'Ohio-State', home_rating: 6.8, away_rating: 9.5, home_state: 'Iowa', away_state:"Ohio" },
-        { home: 'Indiana', away: 'Illinois', home_rating: 7.2, away_rating: 6.3, home_state: 'Indiana', away_state:"Illinois" }
-        ],
+        week2: [
+            {
+              home: {
+                team_name: 'Minnesota',
+                rating: 7.0,
+                state: 'Minnesota',
+                ranking: ''
+              },
+              away: {
+                team_name: 'Maryland',
+                rating: 6.5,
+                state: 'Maryland',
+                ranking: ''
+              }
+            },
+            {
+              home: {
+                team_name: 'Nebraska',
+                rating: 4.5,
+                state: 'Nebraska',
+                ranking: ''
+              },
+              away: {
+                team_name: 'Michigan',
+                rating: 9.7,
+                state: 'Michigan',
+                ranking: ''
+              }
+            },
+            {
+              home: {
+                team_name: 'Penn-State',
+                rating: 8.0,
+                state: 'Pennsylvania',
+                ranking: ''
+              },
+              away: {
+                team_name: 'Rutgers',
+                rating: 2.5,
+                state: 'New Jersey',
+                ranking: ''
+              }
+            },
+            {
+              home: {
+                team_name: 'Iowa',
+                rating: 6.8,
+                state: 'Iowa',
+                ranking: ''
+              },
+              away: {
+                team_name: 'Ohio-State',
+                rating: 9.5,
+                state: 'Ohio',
+                ranking: ''
+              }
+            },
+            {
+              home: {
+                team_name: 'Indiana',
+                rating: 7.2,
+                state: 'Indiana',
+                ranking: ''
+              },
+              away: {
+                team_name: 'Illinois',
+                rating: 6.3,
+                state: 'Illinois',
+                ranking: ''
+              }
+            }
+          ],
         
       week3:[
-        { home: 'Penn-State', away: 'Maryland', home_rating: 8.0, away_rating: 6.5, home_state: 'Pennsylvania', away_state:"Maryland" },
-        { home: 'Michigan', away: 'Minnesota', home_rating: 9.7, away_rating: 7.0, home_state: 'Michigan', away_state:"Minnesota" },
-        { home: 'Illinois', away: 'Rutgers', home_rating: 6.7, away_rating: 6.0, home_state: 'Illinois', away_state:"New Jersey" },
-        { home: 'Iowa', away: 'Indiana', home_rating: 6.8, away_rating: 7.2, home_state: 'Iowa', away_state:"Indiana" },
-        { home: 'Nebraska', away: 'Ohio-State', home_rating: 4.5, away_rating: 9.5, home_state: 'Nebraska',away_state:"Nebraska" }
-        ],
+        {
+          home: {
+            team_name: 'Penn-State',
+            rating: 8.0,
+            state: 'Pennsylvania',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Maryland',
+            rating: 6.5,
+            state: 'Maryland',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Michigan',
+            rating: 9.7,
+            state: 'Michigan',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Minnesota',
+            rating: 7.0,
+            state: 'Minnesota',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Illinois',
+            rating: 6.7,
+            state: 'Illinois',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Rutgers',
+            rating: 6.0,
+            state: 'New Jersey',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Iowa',
+            rating: 6.8,
+            state: 'Iowa',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Indiana',
+            rating: 7.2,
+            state: 'Indiana',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Nebraska',
+            rating: 4.5,
+            state: 'Nebraska',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Ohio-State',
+            rating: 9.5,
+            state: 'Ohio',
+            ranking: ''
+          }
+        }
+      ]
+      ,
        week4: [
-            { home: 'Michigan', away: 'Penn-State', home_rating: 9.7, away_rating: 8.0, home_state: 'Michigan', away_state: 'Pennsylvania' },
-            { home: 'Minnesota', away: 'Nebraska', home_rating: 7.0, away_rating: 4.5, home_state: 'Minnesota', away_state: 'Nebraska' },
-            { home: 'Maryland', away: 'Rutgers', home_rating: 6.5, away_rating: 6.0, home_state: 'Maryland', away_state: 'New Jersey' },
-            { home: 'Iowa', away: 'Illinois', home_rating: 6.8, away_rating: 6.7, home_state: 'Illinois', away_state: 'Illinois' },
-            { home: 'Ohio-State', away: 'Indiana', home_rating: 9.5, away_rating: 7.2, home_state: 'Ohio', away_state: 'Indiana' }
-        ],
+        {
+          home: {
+            team_name: 'Michigan',
+            rating: 9.7,
+            state: 'Michigan',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Penn-State',
+            rating: 8.0,
+            state: 'Pennsylvania',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Minnesota',
+            rating: 7.0,
+            state: 'Minnesota',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Nebraska',
+            rating: 4.5,
+            state: 'Nebraska',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Maryland',
+            rating: 6.5,
+            state: 'Maryland',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Rutgers',
+            rating: 6.0,
+            state: 'New Jersey',
+            ranking: ''
+          }
+        },
+        {
+          home: {
+            team_name: 'Iowa',
+            rating: 6.8,
+            state: 'Illinois',
+            ranking: ''
+          },
+          away: {
+            team_name: 'Illinois',
+            rating: 6.7,
+            state: 'Illinois'
+          }
+        },
+        {
+          home: {
+            team_name: 'Ohio-State',
+            rating: 9.5,
+            state: 'Ohio'
+          },
+          away: {
+            team_name: 'Indiana',
+            rating: 7.2,
+            state: 'Indiana'
+          }
+        }
+      ]
+      ,
        week5: [
-            { home: 'Rutgers', away: 'Michigan', home_rating: 4.5, away_rating: 9.7, home_state: 'New Jersey', away_state: 'Michigan' },
-            { home: 'Iowa', away: 'Minnesota', home_rating: 6.8, away_rating: 7.0, home_state: 'Iowa', away_state: 'Minnesota' },
-            { home: 'Ohio-State', away: 'Penn-State', home_rating: 9.5, away_rating: 8.0, home_state: 'Ohio', away_state: 'Pennsylvania' },
-            { home: 'Nebraska', away: 'Illinois', home_rating: 4.5, away_rating: 6.7, home_state: 'Nebraska', away_state: 'Illinois' },
-            { home: 'Indiana', away: 'Maryland', home_rating: 7.2, away_rating: 6.5, home_state: 'Indiana', away_state: 'Maryland' }
+        {
+            home: {
+            team_name: 'Michigan',
+            rating: 9.7,
+            state: 'Michigan'
+            },
+            away: {
+            team_name: 'Penn-State',
+            rating: 8.0,
+            state: 'Pennsylvania'
+            }
+            },
+            {
+            home: {
+            team_name: 'Minnesota',
+            rating: 7.0,
+            state: 'Minnesota'
+            },
+            away: {
+            team_name: 'Nebraska',
+            rating: 4.5,
+            state: 'Nebraska'
+            }
+            },
+            {
+            home: {
+            team_name: 'Maryland',
+            rating: 6.5,
+            state: 'Maryland'
+            },
+            away: {
+            team_name: 'Rutgers',
+            rating: 6.0,
+            state: 'New Jersey'
+            }
+            },
+            {
+            home: {
+            team_name: 'Iowa',
+            rating: 6.8,
+            state: 'Illinois'
+            },
+            away: {
+            team_name: 'Illinois',
+            rating: 6.7,
+            state: 'Illinois'
+            }
+            },
+            {
+            home: {
+            team_name: 'Ohio-State',
+            rating: 9.5,
+            state: 'Ohio'
+            },
+            away: {
+            team_name: 'Indiana',
+            rating: 7.2,
+            state: 'Indiana'
+            }
+            }
         ]
         }
 

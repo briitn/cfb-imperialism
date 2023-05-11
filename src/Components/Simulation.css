@@ -1,7 +1,6 @@
 .resultsTable{
     display: flex;
     flex-wrap: wrap;
-
   justify-content:space-between ;
     align-items: center;
 margin-left: 200px;
@@ -14,36 +13,11 @@ margin-left: 200px;
     align-items: center;
 }
 table { border: 1px solid black;
-    border-collapse: separate;
     border-spacing: 10px;
   }
   td {
 word-spacing: 30px;
   }
- /* image {
-  x:28;
-  y:10
-  }
-  
- image:nth-child(1) {
-  
-  }
-  
- image:nth-child(2) {
-    top: 0;
-    left: 120px;
-  }
-  
- image:nth-child(3) {
-    top: 120px;
-    left: 0;
-  }
-  
- image:nth-child(4) {
-    top: 120px;
-    left: 120px;
-  } */
-  pattern{
-    background-color: red;
-  }
+
+
 
