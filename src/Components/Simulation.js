@@ -7,6 +7,7 @@ import increaseRankings from "./Rankings";
 const Simulation=({week, countUp})=>{
  const holdGames=[]
  const holdResults=[]
+ const rankings =[];
  for (const game of Schedule[`${week}`]) {
   const { home, away } = game;
   const score = simulateGame(home, away);
@@ -90,21 +91,119 @@ const table=<table key={Math.random()}>
 </tbody>
 </table>
  holdGames.push(table)
- }
- for(const team of Schedule['week2']){
- holdResults.forEach(item=>{
-  if(team.away.team_name===item.winningTeam || team.home.team_name===item.winningTeam){
-    console.log(item)
-  team.away.team_name===item.winningTeam?team.away.ranking=item.winningRank-1:team.home.ranking=item.winningRank-1
+ };
+
+ for(const team of Schedule[`week${countUp+1}`]){
+ holdResults.forEach(result=>{
+  if(team.away.team_name===result.winningTeam || team.home.team_name===result.winningTeam){
+  for (const game of Schedule[`week${countUp+1}`]){
+  if (rankings.includes(result.winningRank-1)){
+    team.away.team_name===result.winningTeam?team.away.ranking=result.winningRank:team.home.ranking=result.winningRank
+  }
+  else if (!rankings.includes(result.winningRank-1)){
+    rankings.push(result.winningRank-1)
+    team.away.team_name===result.winningTeam?team.away.ranking=result.winningRank-1:team.home.ranking=result.winningRank-1
+  }
+  }
+  console.log('ll')
+
    }
-    if(team.away.team_name===item.losingTeam || team.home.team_name===item.losingTeam){
+
+    if(team.away.team_name===result.losingTeam || team.home.team_name===result.losingTeam){
       
-    team.away.team_name===item.losingTeam?team.away.ranking=item.losingRank+1:team.home.ranking=item.losingRank+1
+      for (const game of Schedule[`week${countUp+1}`]){
+     
+        if (rankings.includes(result.losingRank+1)){
+        
+          team.away.team_name===result.winningTeam?team.away.ranking=result.losingRank:team.home.ranking=result.losingRank
+        }
+        else if(!rankings.includes(result.losingRank+1)){
+          rankings.push(result.losingRank+1)
+          team.away.team_name===result.winningTeam?team.away.ranking=result.losingRank+1:team.home.ranking=result.losingRank+1
+        }
+        }
      }})
+     console.log(rankings)
  }
 
-const filterTeam=Schedule['week2'].filter(item=>item.home.ranking===4)
-console.log(filterTeam)
+console.log(Schedule['week2'])
+//  function rearrangeTeams(schedule) {
+//   // create a list of rankings
+//   const rankings = schedule.reduce((acc, curr) => {
+//     acc.push(curr.home.ranking);
+//     acc.push(curr.away.ranking);
+//     return acc;
+//   }, []);
+//   console.log(rankings);
+//   // loop through the rankings, checking for duplicates
+//   [...new Set(rankings)].forEach(rank => {
+//     const rankTeams = schedule.filter(team => team.home.ranking === rank || team.away.ranking === rank);
+    
+//     // if there are duplicates, rearrange the schedule
+//     if (rankTeams.length > 1) {
+//       const sortedTeams = rankTeams.sort((a, b) => {
+//         if (a.home.ranking === rank) return -1;
+//         if (b.home.ranking === rank) return 1;
+//         return 0;
+//       });
+      
+//       sortedTeams.forEach((team, index) => {
+//         const newRank = rank + index;
+//         if (team.home.ranking === rank) {
+//           team.home.ranking = newRank;
+//         } else {
+//           team.away.ranking = newRank;
+//         }
+//       });
+//     }
+//   });
+  
+//   return schedule;
+// }
+
+// console.log(rearrangeTeams(Schedule[`week${countUp+1}`]))
+// // console.log(rearrangeTeams(Schedule[`week${countUp+1}`]))
+// // Define the initial team rankings
+// let rankings = [
+//   { name: "Alabama", rank: 1 },
+//   { name: "Clemson", rank: 2 },
+//   { name: "Ohio State", rank: 3 },
+//   { name: "Oklahoma", rank: 4 },
+//   { name: "Georgia", rank: 5 }
+// ];
+
+// // Simulate a match between two teams
+// let team1 = rankings[0]; // Alabama
+// let team2 = rankings[2]; // Ohio State
+// let team1Score = Math.floor(Math.random() * 50) + 1; // Generate a random score for team 1
+// let team2Score = Math.floor(Math.random() * 50) + 1; // Generate a random score for team 2
+
+// // Update the rankings based on the match result
+// if (team1Score > team2Score) {
+//   // Team 1 wins, so its rank goes down by 1 and Team 2's rank goes up by 1
+//   if (team1.rank > 1) {
+//     team1.rank--;
+//     team2.rank++;
+//   }
+// } else {
+//   // Team 2 wins, so its rank goes down by 1 and Team 1's rank goes up by 1
+//   if (team2.rank > 1) {
+//     team2.rank--;
+//     team1.rank++;
+//   }
+// }
+
+// // Check for any duplicate ranks and adjust them if necessary
+// let sortedRankings = rankings.sort((a, b) => a.rank - b.rank);
+// for (let i = 0; i < sortedRankings.length - 1; i++) {
+//   if (sortedRankings[i].rank === sortedRankings[i + 1].rank) {
+//     sortedRankings[i + 1].rank++;
+//   }
+// }
+
+// // Display the updated rankings
+// console.log("Updated Rankings:");
+// console.log(sortedRankings);
 
 return(
     <>
