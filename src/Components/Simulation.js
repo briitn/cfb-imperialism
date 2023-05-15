@@ -7,26 +7,36 @@ import increaseRankings from "./Rankings";
 const Simulation=({week, countUp})=>{
  const holdGames=[]
  const holdResults=[]
- const rankings =[];
+
  for (const game of Schedule[`${week}`]) {
   const { home, away } = game;
   const score = simulateGame(home, away);
   
-  let winningTeam, losingTeam,losingRank, winningRank;
+  let winningTeam,homeTeam, awayTeam,losingTeam,losingRank, winningRank, scoreDiff, winScore, loseScore;
   if (score[0] > score[1]) {
     winningTeam = home.team_name;
     losingTeam = away.team_name;
-    winningRank= home.ranking
+    winningRank= home.ranking;
+    winScore=score[0]
+    loseScore=score[1]
+    awayTeam=away.team_name
     losingRank=away.ranking
+    homeTeam=home.team_name
+    scoreDiff=score[0]-score[1]
     holdResults.push({winningTeam,
-  losingTeam,losingRank , winningRank})
+  losingTeam,losingRank , winningRank, scoreDiff, homeTeam, awayTeam, winScore, loseScore})
   } else if (score[1] > score[0]) {
     winningTeam =  away.team_name;
     losingTeam = home.team_name;
    winningRank = away.ranking
+   winScore=score[1]
+   loseScore=score[0]
+   homeTeam=home.team_name
+   awayTeam=away.team_name
    losingRank=home.ranking
+   scoreDiff=score[1]-score[0]
     holdResults.push({winningTeam,
-      losingTeam, losingRank, winningRank})
+      losingTeam, losingRank, winningRank, scoreDiff, homeTeam, awayTeam, winScore, loseScore})
   } else {
     continue; // In case of a tie, do nothing
   }
@@ -75,58 +85,96 @@ filledPattern.appendChild(image);
     getHomePath.setAttribute("fill", `url(#${away.team_name}${rng})`);
    }
 } 
-const table=<table key={Math.random()}>
-<tbody>
-  <tr>
-    <td>
-      <span>{home.ranking}</span><img src={pictures.find(item=>{
-       return item.includes(home.team_name)})} width='10px'/>{home.team_name}         {score[0]}</td>
-  </tr>
-  <tr>
-       <td>
-       <span>{away.ranking}</span>    <img src={pictures.find(item=>{
-       return item.includes(away.team_name)})} width='20px'/>
-           {away.team_name}      {score[1]}</td>
-  </tr>
-</tbody>
-</table>
- holdGames.push(table)
+
  };
+ let winRankings = [1,2,3,4,5];
+ let loseRankings=[6,7,8,9,10]
 
- for(const team of Schedule[`week${countUp+1}`]){
- holdResults.forEach(result=>{
-  if(team.away.team_name===result.winningTeam || team.home.team_name===result.winningTeam){
-  for (const game of Schedule[`week${countUp+1}`]){
-  if (rankings.includes(result.winningRank-1)){
-    team.away.team_name===result.winningTeam?team.away.ranking=result.winningRank:team.home.ranking=result.winningRank
+holdResults.sort((a,b)=>b.scoreDiff-a.scoreDiff)
+console.log(holdResults)
+holdResults.forEach(item=>{
+  let rng=Math.random()*10
+  console.log(rng)
+  let randomNum
+  let randNum
+  if (rng<=9){
+    randomNum=1
+    randNum=0
   }
-  else if (!rankings.includes(result.winningRank-1)){
-    rankings.push(result.winningRank-1)
-    team.away.team_name===result.winningTeam?team.away.ranking=result.winningRank-1:team.home.ranking=result.winningRank-1
+  else{
+    randNum=1
+    randomNum=0
   }
-  }
-  console.log('ll')
+const increaseRank=randomNum *(loseRankings.length-1);
 
-   }
 
-    if(team.away.team_name===result.losingTeam || team.home.team_name===result.losingTeam){
-      
-      for (const game of Schedule[`week${countUp+1}`]){
-     
-        if (rankings.includes(result.losingRank+1)){
-        
-          team.away.team_name===result.winningTeam?team.away.ranking=result.losingRank:team.home.ranking=result.losingRank
-        }
-        else if(!rankings.includes(result.losingRank+1)){
-          rankings.push(result.losingRank+1)
-          team.away.team_name===result.winningTeam?team.away.ranking=result.losingRank+1:team.home.ranking=result.losingRank+1
-        }
-        }
-     }})
-     console.log(rankings)
- }
+  item.losingRank=loseRankings[increaseRank]
+  loseRankings.splice(increaseRank, 1)
+  console.log(loseRankings)
+const decreaseRank= randNum * (winRankings.length-1);
+console.log(increaseRank)
+console.log(winRankings)
+    item.winningRank=winRankings[decreaseRank]
+    winRankings.splice(decreaseRank,1);
 
-console.log(Schedule['week2'])
+    const table=<table key={Math.random()}>
+    <tbody>
+      <tr>
+        <td>
+          <span>{item.winningRank}</span><img src={pictures.find(pic=>{
+           return pic.includes(item.winningTeam)})} width='10px'/>{item.winningTeam}  {item.winScore}</td>
+      </tr>
+      <tr>
+           <td>
+           <span>{item.losingRank}</span>    <img src={pictures.find(pic=>{
+           return pic.includes(item.losingTeam)})} width='20px'/>
+               {item.losingTeam}      {item.loseScore}</td>
+      </tr>
+    </tbody>
+    </table>
+     holdGames.push(table)
+})
+
+console.log(holdResults)
+
+//  let rankings = [];
+
+//  if (countUp+1<6) {
+//    for(const team of Schedule[`week${countUp+1}`]) {
+//      holdResults.forEach(result => {
+//        if(team.away.team_name === result.winningTeam || team.home.team_name === result.winningTeam) {
+//          if(result.losingRank-1 <= 1) {
+//            team.away.team_name === result.winningTeam ? team.away.ranking = 1 : team.home.ranking = 1;
+//          }
+//          else if(!rankings.includes(result.winningRank-1) && result.winningRank-1 >= 1) {
+//            rankings.push(parseInt(result.winningRank-1));
+//            team.away.team_name === result.winningTeam ? team.away.ranking = result.winningRank-1 : team.home.ranking = result.winningRank-1;
+//          }
+//          else if(rankings.includes(result.winningRank-1) && result.winningRank-1 >= 1) {
+//            team.away.team_name === result.winningTeam ? team.away.ranking = result.winningRank : team.home.ranking = result.winningRank;
+//          }
+//        }
+//        else if(team.away.team_name === result.losingTeam || team.home.team_name === result.losingTeam) {
+//          if(result.losingRank+1 >= 10) {
+//            team.away.team_name === result.winningTeam ? team.away.ranking = 10 : team.home.ranking = 10;
+//          }
+//          else if(!rankings.includes(result.losingRank+1) && result.losingRank+1 <= 10) {
+//            rankings.push(parseInt(result.losingRank+1));
+//            team.away.team_name === result.winningTeam ? team.away.ranking = result.losingRank+1 : team.home.ranking = result.losingRank+1;
+//          }
+//          else if(rankings.includes(result.losingRank+1) && result.losingRank+1 <= 10) {
+//            team.away.team_name === result.winningTeam ? team.away.ranking = result.losingRank : team.home.ranking = result.losingRank;
+//          }
+//        }
+//      });
+//      console.log(rankings);
+//    }
+//  }
+
+
+// console.log(holdResults)
+
+// console.log(rankings)
 //  function rearrangeTeams(schedule) {
 //   // create a list of rankings
 //   const rankings = schedule.reduce((acc, curr) => {
