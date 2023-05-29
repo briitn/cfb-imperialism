@@ -3,47 +3,47 @@ import { Schedule } from "../schedule";
 import './Simulation.css'
 import simulateGame from "./Simulate";
 import pictures from "../pictures";
-import increaseRankings from "./Rankings";
-const Simulation=({week, countUp})=>{
+import Rankings from "./Rankings";
+const Simulation=({week, countUp, standings, simulate, showStandings})=>{
  const holdGames=[]
  const holdResults=[]
-
+console.log(simulate)
  for (const game of Schedule[`${week}`]) {
   const { home, away } = game;
   const score = simulateGame(home, away);
   
-  let winningTeam,homeTeam, awayTeam,losingTeam,losingRank, winningRank, scoreDiff, winScore, loseScore;
+  let winningTeam, losingTeam,losingRank, winningRank, scoreDiff, rankDiff ;
   if (score[0] > score[1]) {
     winningTeam = home.team_name;
     losingTeam = away.team_name;
-    winningRank= home.ranking;
-    winScore=score[0]
-    loseScore=score[1]
-    awayTeam=away.team_name
+    winningRank= home.ranking
     losingRank=away.ranking
-    homeTeam=home.team_name
+  
+   
+    winningRank>losingRank?rankDiff=winningRank-losingRank:rankDiff=losingRank-winningRank
+    
     scoreDiff=score[0]-score[1]
     holdResults.push({winningTeam,
-  losingTeam,losingRank , winningRank, scoreDiff, homeTeam, awayTeam, winScore, loseScore})
+  losingTeam,losingRank , winningRank, scoreDiff, rankDiff})
   } else if (score[1] > score[0]) {
     winningTeam =  away.team_name;
     losingTeam = home.team_name;
    winningRank = away.ranking
-   winScore=score[1]
-   loseScore=score[0]
-   homeTeam=home.team_name
-   awayTeam=away.team_name
    losingRank=home.ranking
+   winningRank>losingRank?rankDiff= winningRank-losingRank:rankDiff=losingRank-winningRank
    scoreDiff=score[1]-score[0]
+  
+
     holdResults.push({winningTeam,
-      losingTeam, losingRank, winningRank, scoreDiff, homeTeam, awayTeam, winScore, loseScore})
+      losingTeam, losingRank, winningRank, scoreDiff, rankDiff})
   } else {
     continue; // In case of a tie, do nothing
   }
 
   // Update rankings
   
-   
+  standings.sort((a,b)=>a.rank-b.rank)
+
 
   // If no swap occurred, update the rankings normally
 
@@ -59,7 +59,7 @@ const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
 image.setAttribute('href', `${findPic}`);
 image.setAttribute('width', '20');
 image.setAttribute('height', '20');
-image.setAttribute('x', `${countUp*5}`);
+image.setAttribute('x', `${countUp*4}`);
 image.setAttribute('y', `${countUp+5}`);
 filledPattern.appendChild(image);
     }
@@ -70,8 +70,8 @@ filledPattern.appendChild(image);
     pattern.setAttribute('patternUnits', 'userSpaceOnUse');
     pattern.setAttribute('width', '1');
     pattern.setAttribute('height', '1');
-    pattern.setAttribute('x', '50%');
-    pattern.setAttribute('y', '50%');
+    pattern.setAttribute('x', '60%');
+    pattern.setAttribute('y', '40%');
     pattern.setAttribute('patternUnits','xMidYMid slice');
     const findPic=pictures.find(item => item.includes(`${away.team_name}`));
     const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
@@ -85,25 +85,49 @@ filledPattern.appendChild(image);
     getHomePath.setAttribute("fill", `url(#${away.team_name}${rng})`);
    }
 } 
-
+const table=<table key={Math.random()}>
+<tbody>
+  <tr>
+    <td>
+      <span>{home.ranking}</span><img src={pictures.find(item=>{
+       return item.includes(home.team_name)})} width='10px'/>{home.team_name}         {score[0]}</td>
+  </tr>
+  <tr>
+       <td>
+       <span>{away.ranking}</span>    <img src={pictures.find(item=>{
+       return item.includes(away.team_name)})} width='20px'/>
+           {away.team_name}      {score[1]}</td>
+  </tr>
+</tbody>
+</table>
+ holdGames.push(table)
  };
  let winRankings = [1,2,3,4,5];
  let loseRankings=[6,7,8,9,10]
-
+ holdResults.sort((a,b)=>a.rankDiff-b.rankDiff)
 holdResults.sort((a,b)=>b.scoreDiff-a.scoreDiff)
+
 console.log(holdResults)
 holdResults.forEach(item=>{
+
   let rng=Math.random()*10
   console.log(rng)
   let randomNum
   let randNum
-  if (rng<=9){
+  if (rng<=9.5){
     randomNum=1
     randNum=0
   }
   else{
     randNum=1
     randomNum=0
+  }
+
+  if (item.winningTeam){
+    standings.push({team: item.winningTeam, rank:item.winningRank})
+  }
+  if (item.losingTeam){
+    standings.push({team:item.losingTeam, rank: item.losingRank})
   }
 const increaseRank=randomNum *(loseRankings.length-1);
 
@@ -115,153 +139,45 @@ const decreaseRank= randNum * (winRankings.length-1);
 console.log(increaseRank)
 console.log(winRankings)
     item.winningRank=winRankings[decreaseRank]
-    winRankings.splice(decreaseRank,1);
+    winRankings.splice(decreaseRank,1)
 
-    const table=<table key={Math.random()}>
-    <tbody>
-      <tr>
-        <td>
-          <span>{item.winningRank}</span><img src={pictures.find(pic=>{
-           return pic.includes(item.winningTeam)})} width='10px'/>{item.winningTeam}  {item.winScore}</td>
-      </tr>
-      <tr>
-           <td>
-           <span>{item.losingRank}</span>    <img src={pictures.find(pic=>{
-           return pic.includes(item.losingTeam)})} width='20px'/>
-               {item.losingTeam}      {item.loseScore}</td>
-      </tr>
-    </tbody>
-    </table>
-     holdGames.push(table)
 })
 
 console.log(holdResults)
+if (countUp+1<=5){
+for (const team of Schedule[`week${countUp+1}`]){
+  console.log(team.home.team_name)
+ holdResults.forEach(item=>{
+  if (item.winningTeam===team.home.team_name || item.winningTeam===team.away.team_name){
+    console.log(item.winningTeam)
+  item.winningTeam===team.home.team_name?team.home.ranking=item.winningRank:team.away.ranking=item.winningRank
 
-//  let rankings = [];
+ }
+ if (item.losingTeam===team.home.team_name || item.losingTeam===team.away.team_name){
+  console.log(item.losingTeam)
+  item.losingTeam===team.home.team_name?team.home.ranking=item.losingRank:team.away.ranking=item.losingRank
 
-//  if (countUp+1<6) {
-//    for(const team of Schedule[`week${countUp+1}`]) {
-//      holdResults.forEach(result => {
-//        if(team.away.team_name === result.winningTeam || team.home.team_name === result.winningTeam) {
-//          if(result.losingRank-1 <= 1) {
-//            team.away.team_name === result.winningTeam ? team.away.ranking = 1 : team.home.ranking = 1;
-//          }
-//          else if(!rankings.includes(result.winningRank-1) && result.winningRank-1 >= 1) {
-//            rankings.push(parseInt(result.winningRank-1));
-//            team.away.team_name === result.winningTeam ? team.away.ranking = result.winningRank-1 : team.home.ranking = result.winningRank-1;
-//          }
-//          else if(rankings.includes(result.winningRank-1) && result.winningRank-1 >= 1) {
-//            team.away.team_name === result.winningTeam ? team.away.ranking = result.winningRank : team.home.ranking = result.winningRank;
-//          }
-//        }
-//        else if(team.away.team_name === result.losingTeam || team.home.team_name === result.losingTeam) {
-//          if(result.losingRank+1 >= 10) {
-//            team.away.team_name === result.winningTeam ? team.away.ranking = 10 : team.home.ranking = 10;
-//          }
-//          else if(!rankings.includes(result.losingRank+1) && result.losingRank+1 <= 10) {
-//            rankings.push(parseInt(result.losingRank+1));
-//            team.away.team_name === result.winningTeam ? team.away.ranking = result.losingRank+1 : team.home.ranking = result.losingRank+1;
-//          }
-//          else if(rankings.includes(result.losingRank+1) && result.losingRank+1 <= 10) {
-//            team.away.team_name === result.winningTeam ? team.away.ranking = result.losingRank : team.home.ranking = result.losingRank;
-//          }
-//        }
-//      });
-//      console.log(rankings);
-//    }
-//  }
+ }
+})
+}}
 
+console.log(standings.sort((a,b)=>a.rank-b.rank))
 
-// console.log(holdResults)
-
-// console.log(rankings)
-//  function rearrangeTeams(schedule) {
-//   // create a list of rankings
-//   const rankings = schedule.reduce((acc, curr) => {
-//     acc.push(curr.home.ranking);
-//     acc.push(curr.away.ranking);
-//     return acc;
-//   }, []);
-//   console.log(rankings);
-//   // loop through the rankings, checking for duplicates
-//   [...new Set(rankings)].forEach(rank => {
-//     const rankTeams = schedule.filter(team => team.home.ranking === rank || team.away.ranking === rank);
-    
-//     // if there are duplicates, rearrange the schedule
-//     if (rankTeams.length > 1) {
-//       const sortedTeams = rankTeams.sort((a, b) => {
-//         if (a.home.ranking === rank) return -1;
-//         if (b.home.ranking === rank) return 1;
-//         return 0;
-//       });
-      
-//       sortedTeams.forEach((team, index) => {
-//         const newRank = rank + index;
-//         if (team.home.ranking === rank) {
-//           team.home.ranking = newRank;
-//         } else {
-//           team.away.ranking = newRank;
-//         }
-//       });
-//     }
-//   });
-  
-//   return schedule;
-// }
-
-// console.log(rearrangeTeams(Schedule[`week${countUp+1}`]))
-// // console.log(rearrangeTeams(Schedule[`week${countUp+1}`]))
-// // Define the initial team rankings
-// let rankings = [
-//   { name: "Alabama", rank: 1 },
-//   { name: "Clemson", rank: 2 },
-//   { name: "Ohio State", rank: 3 },
-//   { name: "Oklahoma", rank: 4 },
-//   { name: "Georgia", rank: 5 }
-// ];
-
-// // Simulate a match between two teams
-// let team1 = rankings[0]; // Alabama
-// let team2 = rankings[2]; // Ohio State
-// let team1Score = Math.floor(Math.random() * 50) + 1; // Generate a random score for team 1
-// let team2Score = Math.floor(Math.random() * 50) + 1; // Generate a random score for team 2
-
-// // Update the rankings based on the match result
-// if (team1Score > team2Score) {
-//   // Team 1 wins, so its rank goes down by 1 and Team 2's rank goes up by 1
-//   if (team1.rank > 1) {
-//     team1.rank--;
-//     team2.rank++;
-//   }
-// } else {
-//   // Team 2 wins, so its rank goes down by 1 and Team 1's rank goes up by 1
-//   if (team2.rank > 1) {
-//     team2.rank--;
-//     team1.rank++;
-//   }
-// }
-
-// // Check for any duplicate ranks and adjust them if necessary
-// let sortedRankings = rankings.sort((a, b) => a.rank - b.rank);
-// for (let i = 0; i < sortedRankings.length - 1; i++) {
-//   if (sortedRankings[i].rank === sortedRankings[i + 1].rank) {
-//     sortedRankings[i + 1].rank++;
-//   }
-// }
-
-// // Display the updated rankings
-// console.log("Updated Rankings:");
-// console.log(sortedRankings);
-
+console.log(showStandings)
 return(
     <>
-    <div className="holdResultsTable">
-    <div className="resultsTable">
+    {!showStandings?
+    <>
+    <div className="table__container">
+    <div className="table__container-content">
 {holdGames.map(item=>(
   item  
 ))}
     </div>
     </div>
+
+</>:<Rankings standings={standings}/>}
+    
     </>
 )
 }

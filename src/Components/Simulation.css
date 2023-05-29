@@ -1,4 +1,4 @@
-.resultsTable{
+.table__container-content{
     display: flex;
     flex-wrap: wrap;
   justify-content:space-between ;
@@ -7,8 +7,13 @@ margin-left: 200px;
 
 }
 
-.holdResultsTable{
+.table__container{
     display: grid;
+  justify-content: center;
+    align-items: center;
+}
+.standings__container-content{
+  display: grid;
   justify-content: center;
     align-items: center;
 }

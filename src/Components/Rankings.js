@@ -1,37 +1,40 @@
-function increaseRankings(arr,score, index = 0) {
-    // if (index >= arr.length) {
-    //   return; // Base case: end of array
-    // }
-console.log(score)
-    let homeRanking= arr[index].home.ranking
-   
-    //const awayRamking= arr[index].away.ranking
-    const sameRanking=arr.filter((item,index)=>{
-        if (item.home.ranking===homeRanking-1){
-            return item
-        }})
+import { Schedule } from "../schedule";
+import './Simulation.css'
+import simulateGame from "./Simulate";
+import pictures from "../pictures";
 
-    if (sameRanking.length > 0) {
-        console.log(sameRanking[0].home.ranking)
-        arr[index].home.ranking=sameRanking[0].home.ranking
-     arr.forEach(item => {
-       if (item.home.team_name==sameRanking[0].home.team_name){
-      
-        item.home.ranking=homeRanking
-    
-       }
-      });
-    }
-    
-        // arr[index].home.ranking = sameRanking[0].home.ranking;
-    
-      console.log(arr)
-//console.log(arr[index].home.ranking)
-  // // arr[index].ranking += 1; // Increase ranking of current team
+function Rankings({standings}){
+console.log(standings)
 
-  // console.log(sameRanking)
-    //increaseRankings(arr, index + 1); // Recursively call function with next index
-  }
-  
-  
-  export default increaseRankings
+  const mapStandings=standings.map(item=>{
+    return (
+      <table key={Math.random()}>
+      <tbody>
+        <tr>
+          <td>
+            <span>{item.rank}</span><img src={pictures.find(pic=>{
+             return pic.includes(item.team)})} width='10px'/>{item.team}</td>
+        </tr>
+      </tbody>
+      </table>
+    )
+  })
+
+  return(
+    <div className="standings__container-content">
+      {mapStandings}
+    </div>
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+export default Rankings
