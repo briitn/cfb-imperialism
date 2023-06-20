@@ -163,10 +163,11 @@ for (const team of Schedule[`week${countUp+1}`]){
 
 console.log(standings.sort((a,b)=>a.rank-b.rank))
 
-console.log(showStandings)
+console.log(standings[0].team)
 return(
     <>
-    {!showStandings?
+  { countUp<8
+  ? !showStandings?
     <>
     <div className="table__container">
     <div className="table__container-content">
@@ -176,7 +177,44 @@ return(
     </div>
     </div>
 
-</>:<Rankings standings={standings}/>}
+</>:<Rankings standings={standings}/>:<div>
+<div className="table__container">
+  <div className="table__container-content">
+  <table key={Math.random()}>
+<tbody>
+  <tr>
+    <td>
+      <span>{standings[0].ranking}</span><img src={pictures.find(item=>{
+       return item.includes(standings[0].team)})} width='10px'/>{standings[0].team} </td>
+  </tr>
+  <h3>Vs</h3>
+  <tr>
+       <td>
+       <span>{standings[3].ranking}</span>    <img src={pictures.find(item=>{
+       return item.includes(standings[3].team)})} width='20px'/>
+           {standings[3].team}  </td>
+  </tr>
+</tbody>
+</table>
+<table key={Math.random()}>
+<tbody>
+  <tr>
+    <td>
+      <span>{standings[1].ranking}</span><img src={pictures.find(item=>{
+       return item.includes(standings[1].team)})} width='10px'/>{standings[1].team} </td>
+  </tr>
+  <h3>Vs</h3>
+  <tr>
+       <td>
+       <span>{standings[2].ranking}</span>    <img src={pictures.find(item=>{
+       return item.includes(standings[2].team)})} width='20px'/>
+           {standings[2].team}  </td>
+  </tr>
+</tbody>
+</table>
+</div></div>
+
+  </div>}
     
     </>
 )
