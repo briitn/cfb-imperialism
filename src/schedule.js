@@ -371,70 +371,71 @@ const Schedule = {
               team_name: 'Ohio-State',
               rating: 9.5,
               state: 'Ohio',
-              ranking: 2
-            },
+              ranking: ""
+                        },
             away: {
               team_name: 'Maryland',
               rating: 5.2,
               state: 'Maryland',
-              ranking: 4
-            }
+              ranking: ""
+                        }
           },
           {
             home: {
               team_name: 'Rutgers',
               rating: 2.5,
               state: 'New Jersey',
-              ranking: 10
+              ranking: ""
+              
             },
             away: {
               team_name: 'Iowa',
               rating: 6.8,
               state: 'Iowa',
-              ranking: 6
-            }
+              ranking: ""
+                        }
           },
           {
             home: {
               team_name: 'Michigan',
               rating: 9.7,
               state: 'Michigan',
-              ranking: 1
-            },
+              ranking: ""
+                        },
             away: {
               team_name: 'Illinois',
               rating: 5.3,
               state: 'Illinois',
-              ranking: 9
-            }
+              ranking: ""
+                        }
           },
           {
             home: {
               team_name: 'Indiana',
               rating: 7.2,
               state: 'Indiana',
-              ranking: 7
-            },
+              ranking: ""
+                        },
             away: {
               team_name: 'Nebraska',
               rating: 4.5,
               state: 'Nebraska',
-              ranking: 8
-            }
+              ranking: ""
+                        }
           },
           {
             home: {
               team_name: 'Penn-State',
               rating: 8.0,
               state: 'Pennsylvania',
-              ranking: 3
-            },
+              ranking: ""
+                        },
             away: {
               team_name: 'Minnesota',
               rating: 7.0,
               state: 'Minnesota',
-              ranking: 5
-            }
+              ranking: ""
+                        }
           }
         ],
         week7: [
@@ -443,27 +444,28 @@ const Schedule = {
           team_name: 'Ohio-State',
           rating: 9.5,
           state: 'Ohio',
-          ranking: 2
-          },
+          ranking: ""
+                  },
           away: {
           team_name: 'Minnesota',
           rating: 7.0,
           state: 'Minnesota',
-          ranking: 5
-          }
+          ranking: ""
+                  }
           },
           {
           home: {
           team_name: 'Michigan',
           rating: 9.7,
           state: 'Michigan',
-          ranking: 1
-          },
+          ranking: ""
+                  },
           away: {
           team_name: 'Rutgers',
           rating: 2.5,
           state: 'New Jersey',
-          ranking: 10
+          ranking: ""
+          
           }
           },
           {
@@ -471,42 +473,42 @@ const Schedule = {
           team_name: 'Nebraska',
           rating: 4.5,
           state: 'Nebraska',
-          ranking: 8
-          },
+          ranking: ""
+                  },
           away: {
           team_name: 'Indiana',
           rating: 7.2,
           state: 'Indiana',
-          ranking: 7
-          }
+          ranking: ""
+                  }
           },
           {
           home: {
           team_name: 'Penn-State',
           rating: 8.0,
           state: 'Pennsylvania',
-          ranking: 3
-          },
+          ranking: ""
+                  },
           away: {
           team_name: 'Iowa',
           rating: 6.8,
           state: 'Iowa',
-          ranking: 6
-          }
+          ranking: ""
+                  }
           },
           {
           home: {
           team_name: 'Maryland',
           rating: 5.2,
           state: 'Maryland',
-          ranking: 4
-          },
+          ranking: ""
+                  },
           away: {
           team_name: 'Illinois',
           rating: 5.3,
           state: 'Illinois',
-          ranking: 9
-          }
+          ranking: ""
+                  }
           }
           ],
           week8: [
@@ -515,27 +517,28 @@ const Schedule = {
             team_name: 'Ohio-State',
             rating: 9.5,
             state: 'Ohio',
-            ranking: 2
-            },
+            ranking: ""
+                      },
             away: {
             team_name: 'Penn-State',
             rating: 8.0,
             state: 'Pennsylvania',
-            ranking: 3
-            }
+            ranking: ""
+                      }
             },
             {
             home: {
             team_name: 'Michigan',
             rating: 9.7,
             state: 'Michigan',
-            ranking: 1
-            },
+            ranking: ""
+                      },
             away: {
             team_name: 'Rutgers',
             rating: 2.5,
             state: 'New Jersey',
-            ranking: 10
+            ranking: ""
+            
             }
             },
             {
@@ -543,42 +546,42 @@ const Schedule = {
             team_name: 'Nebraska',
             rating: 4.5,
             state: 'Nebraska',
-            ranking: 8
-            },
+            ranking: ""
+                      },
             away: {
             team_name: 'Iowa',
             rating: 6.8,
             state: 'Iowa',
-            ranking: 6
-            }
+            ranking: ""
+                      }
             },
             {
             home: {
             team_name: 'Minnesota',
             rating: 7.0,
             state: 'Minnesota',
-            ranking: 5
-            },
+            ranking: ""
+                      },
             away: {
             team_name: 'Indiana',
             rating: 7.2,
             state: 'Indiana',
-            ranking: 7
-            }
+            ranking: ""
+                      }
             },
             {
             home: {
             team_name: 'Maryland',
             rating: 5.2,
             state: 'Maryland',
-            ranking: 4
-            },
+            ranking: ""
+                      },
             away: {
             team_name: 'Illinois',
             rating: 5.3,
             state: 'Illinois',
-            ranking: 9
-            }
+            ranking: ""
+                      }
             }
             ]
             

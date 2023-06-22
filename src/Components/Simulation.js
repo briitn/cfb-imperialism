@@ -4,6 +4,7 @@ import './Simulation.css'
 import simulateGame from "./Simulate";
 import pictures from "../pictures";
 import Rankings from "./Rankings";
+import Playoffs from "./Playoffs";
 const Simulation=({week, countUp, standings, simulate, showStandings})=>{
  const holdGames=[]
  const holdResults=[]
@@ -144,7 +145,7 @@ console.log(winRankings)
 })
 
 console.log(holdResults)
-if (countUp+1<=5){
+if (countUp+1<=8){
 for (const team of Schedule[`week${countUp+1}`]){
   console.log(team.home.team_name)
  holdResults.forEach(item=>{
@@ -178,42 +179,8 @@ return(
     </div>
 
 </>:<Rankings standings={standings}/>:<div>
-<div className="table__container">
-  <div className="table__container-content">
-  <table key={Math.random()}>
-<tbody>
-  <tr>
-    <td>
-      <span>{standings[0].ranking}</span><img src={pictures.find(item=>{
-       return item.includes(standings[0].team)})} width='10px'/>{standings[0].team} </td>
-  </tr>
-  <h3>Vs</h3>
-  <tr>
-       <td>
-       <span>{standings[3].ranking}</span>    <img src={pictures.find(item=>{
-       return item.includes(standings[3].team)})} width='20px'/>
-           {standings[3].team}  </td>
-  </tr>
-</tbody>
-</table>
-<table key={Math.random()}>
-<tbody>
-  <tr>
-    <td>
-      <span>{standings[1].ranking}</span><img src={pictures.find(item=>{
-       return item.includes(standings[1].team)})} width='10px'/>{standings[1].team} </td>
-  </tr>
-  <h3>Vs</h3>
-  <tr>
-       <td>
-       <span>{standings[2].ranking}</span>    <img src={pictures.find(item=>{
-       return item.includes(standings[2].team)})} width='20px'/>
-           {standings[2].team}  </td>
-  </tr>
-</tbody>
-</table>
-</div></div>
 
+<Playoffs standings={standings}/>
   </div>}
     
     </>

@@ -9,7 +9,7 @@ function simulateGame(home, away) {
           
             const team1Prob =home.rating / 10;
             const team2Prob = away.rating / 10;
-            if (flipCoin <= 0.5) {
+            if (flipCoin < 0.5) {
                 const randNum = Math.random();
                 if (randNum <= team1Prob/1) {
                     const fgOrTd = Math.random();
@@ -23,7 +23,7 @@ function simulateGame(home, away) {
                     flipCoin = 0.6;
                 }
                 i++;
-            } else if (flipCoin >=0.5) {
+            } else if (flipCoin >0.5) {
                 const randNum = Math.random();
                 if (randNum <=team2Prob/1.5) {
                     const fgOrTd = Math.random();
