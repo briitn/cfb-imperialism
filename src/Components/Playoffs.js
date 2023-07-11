@@ -5,7 +5,7 @@ import pictures from "../pictures"
 function Playoffs ({standings}){
     const simGame1=()=>{
         let teamA_score = 0;
-        let teamB_score 0;
+        let teamB_score = 0;
         let quater = 1;
         let flipCoin = Math.random();
         while (quater < 5) {
