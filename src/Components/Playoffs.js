@@ -6,7 +6,7 @@ function Playoffs ({standings}){
     const simGame1=()=>{
         let teamA_score = 0;
         let teamB_score = 0;
-        let quater = 1;
+        let quater = 1;l
         let flipCoin = Math.random();
         while (quater < 5) {
     
